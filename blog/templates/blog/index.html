@@ -1,0 +1,37 @@
+{% extends 'blog/base.html' %}
+{% block body %}
+    <form method="POST" action="create">
+        {% csrf_token %}
+        <div class="form-inline">
+            <label>Firstname</label>
+            <input type="text" name="firstname" size="12" class="form-control" required="required"/>
+            <label>Lastname</label>
+            <input type="text" name="lastname" size="12" class="form-control" required="required"/>
+            <button class="btn btn-success">Submit</button>
+        </div>
+    </form>
+    <br /><br /><br />
+    <form method="GET" action="search">
+        <div class="form-inline">
+            <input type="text" placeholder="Search" name="search" class="form-control" required="required" />
+            <button class="btn btn-success btn-sm"><span class="glyphicon glyphicon-search"></span> Search</button>
+        </div>
+    </form>
+    <br />
+    <table class="table table-bordered">
+        <thead class="bg-success">
+            <tr>
+                <th>Firstaname</th>
+                <th>Lastname</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for member in members%}
+            <tr>
+                <td>{{ member.firstname }}</td>
+                <td>{{ member.lastname }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
